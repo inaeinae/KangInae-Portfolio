@@ -14,7 +14,7 @@
 	<style>
 		html,body {
 			background-color: var(--mainwhite);
-			color: var(--maingray);
+			color: var(--mainblack);
 		}
 		
 		.position-back{
@@ -27,17 +27,33 @@
 			z-index: 2;
 		}
 		
+		.circle {
+			width: 50%;
+			padding-bottom: 50%;
+			border-radius: 50%;
+			background-color: var(--maingreen);
+			
+			left: -13%;
+			bottom: -15%;
+		}
+		
 		.block{
 			display: inline-block;
 			vertical-align: top;
 		}
 		
 		.photo{
-			width: 40%;
-			background-color: yellow;
+			min-width: 40%;
+			/* background-color: yellow; */
 			
 			position:fixed;
+			left: -2%;
 			bottom: 0;
+		}
+		
+		.photo img{
+			width: 100%;
+			vertical-align: bottom;
 		}
 		
 		.content{
@@ -46,41 +62,60 @@
 			
 			margin-top: 5%;
 			margin-left: 35%;
+			
+			text-align: left;
 		}
 		
 		.info{
-			width: 40%;
-			text-align: right;
-			background-color: red;
+			width: 30%;
+			/* background-color: red; */
+			
+			margin-right: 5%;
 		}
 		
 		.detail-info{
-			width: 59%;
-			text-align: right;
-			background-color: gray;
+			width: 60%;
+			/* background-color: gray; */
 		}
 		
 		.title{
-			font-size: 3.0em;
+			font-size: 2vw;
+			font-weight: bold;
 		}
 		
 		.subtitle{
-			font-size: 2.0em;
+			font-size: 1.2vw;
 		}
 		
+		table{
+			width: 100%;
+			border-spacing: 10px;
+		}
 		
+		tr :nth-child(1){
+			color: var(--maingray);
+			pointer: default;
+		}
+		
+		tr :nth-child(2){
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	
-	<div class="position-front photo block">&nbsp;</div>
+	<div class="position-back circle"></div>
+	
+	<div class="position-front photo block">
+		<img src="${ contextPath }/resources/img/profile_img.png">
+	</div>
 	
 	<div class="position-front content">
 		<div class="info block">
 			<p class="title">
 				강인애<br>
-				Kang In Ae
+				KANG IN AE
 			</p>
 			
 			<p class="subtitle">
@@ -96,9 +131,51 @@
 				Programming Language
 			</p>
 			
-			<p class="subtitle">
-				<p>&nbsp;</p>
+			<div class="subtitle">
+				&nbsp;
+			</div>
+			
+			
+			<p class="title">
+				Time Line
 			</p>
+			
+			<div class="subtitle">
+				<table>
+					<tr>
+						<td>2016. 03</td>
+						<td>서일대학교 소프트웨어공학과 입학</td>
+					</tr>
+					<tr>
+						<td>2017. 03</td>
+						<td>서일대학교 학생상담센터 근로장학생 근무</td>
+					</tr>
+					<tr>
+						<td>2017. 11</td>
+						<td>서일대학교 세방도서관 근로장학생 근무</td>
+					</tr>
+					<tr>
+						<td>2018. 07</td>
+						<td>메타소프트 현장실습</td>
+					</tr>
+					<tr>
+						<td>2018. 11</td>
+						<td>서일대학교 졸업작품 발표</td>
+					</tr>
+					<tr>
+						<td>2019. 03</td>
+						<td>서일대학교 소프트웨어공학과 전공심화 입학</td>
+					</tr>
+					<tr>
+						<td>2019. 11</td>
+						<td>KH정보교육원 취업성공패키지 수료</td>
+					</tr>
+					<tr>
+						<td>2020. 08</td>
+						<td>정보처리기사 취득</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 	

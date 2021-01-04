@@ -9,6 +9,11 @@ html, body {
 	margin: 0;
 	
 	font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+	
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 /* 
@@ -16,13 +21,15 @@ html, body {
  
 #4ecca3 - 초록색 (메인)
 #eeeeee - 하얀색
-#393e46 - 회색
+#393e46/#9098a5 - 회색
 #232931 - 검정색
  */
 :root {
 	--maingreen: #4ecca3;
 	--mainwhite: #eeeeee;
-	--maingray: #393e46;
+	--maingray: #9098a5;
 	--mainblack: #232931;
 }
+
+
 
