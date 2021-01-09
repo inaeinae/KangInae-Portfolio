@@ -1,5 +1,5 @@
 
-/* '½ºÆ÷Ä« ÇÑ »ê½º ³×¿À' ÆùÆ® */
+/* 'ìŠ¤í¬ì¹´ í•œ ì‚°ìŠ¤ ë„¤ì˜¤' í°íŠ¸ */
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
 html, body {
@@ -16,13 +16,14 @@ html, body {
 	user-select: none;
 }
 
+
 /* 
-ÄÃ·¯Â÷Æ®
+ì»¬ëŸ¬ì°¨íŠ¸
  
-#4ecca3 - ÃÊ·Ï»ö (¸ŞÀÎ)
-#eeeeee - ÇÏ¾á»ö
-#393e46/#9098a5 - È¸»ö
-#232931 - °ËÁ¤»ö
+#4ecca3 - ì´ˆë¡ìƒ‰ (ë©”ì¸)
+#eeeeee - í•˜ì–€ìƒ‰
+#393e46/#9098a5 - íšŒìƒ‰
+#232931 - ê²€ì •ìƒ‰
  */
 :root {
 	--maingreen: #4ecca3;
@@ -32,4 +33,28 @@ html, body {
 }
 
 
+.position-back {
+	position: absolute;
+	z-index: 1;
+}
 
+.position-front {
+	position: absolute;
+	z-index: 2;
+}
+
+.block {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.title {
+	font-size: 2.2vw;
+	font-weight: bold;
+}
+
+.subtitle {
+	font-size: 1.7vw;
+	font-weight: bold;
+	width: 100%;
+}
