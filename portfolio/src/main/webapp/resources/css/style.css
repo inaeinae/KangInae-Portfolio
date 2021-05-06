@@ -1,5 +1,5 @@
 
-/* '스포카 한 산스 네오' 폰트 */
+/* '����ī �� �꽺 �׿�' ��Ʈ */
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
 html, body {
@@ -16,45 +16,59 @@ html, body {
 	user-select: none;
 }
 
-
 /* 
+<<<<<<< master
 컬러차트
- 
-#4ecca3 - 초록색 (메인)
+
 #eeeeee - 하얀색
 #393e46/#9098a5 - 회색
 #232931 - 검정색
+=======
+�÷���Ʈ
+ 
+#4ecca3 - �ʷϻ� (����)
+#eeeeee - �Ͼ��
+#393e46/#9098a5 - ȸ��
+#232931 - ������
+>>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
  */
 :root {
-	--maingreen: #4ecca3;
 	--mainwhite: #eeeeee;
-	--maingray: #9098a5;
+	--maingray: #7a808a;
 	--mainblack: #232931;
+	--lightgray: #9c9c9c;
 }
 
 
-.position-back {
-	position: absolute;
-	z-index: 1;
+/* 메인 스크롤바 */
+::-webkit-scrollbar{
+	width: 14px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--maingray);
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+::-webkit-scrollbar-track {
+	background-color: var(--mainblack);
+	border-radius: 10px;
 }
 
-.position-front {
-	position: absolute;
-	z-index: 2;
+/* 모달 스크롤바 */
+.modal-content::-webkit-scrollbar{
+	width: 14px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+	background-color: var(--lightgray);
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+.modal-content::-webkit-scrollbar-track {
+	background-color: var(--mainwhite);
+	border-radius: 10px;
 }
 
-.block {
-	display: inline-block;
-	vertical-align: top;
-}
 
-.title {
-	font-size: 2.2vw;
-	font-weight: bold;
-}
 
-.subtitle {
-	font-size: 1.7vw;
-	font-weight: bold;
-	width: 100%;
-}
