@@ -25,7 +25,6 @@
 			overflow-y: auto;
 		}
 		
-<<<<<<< master
 		
 		/* &도움말 */
 		#helpBtn {
@@ -35,21 +34,6 @@
 			width: 2vw;
 			height: 2vw;
 			background-color: var(--mainwhite);
-=======
-		.position-back{
-			position: absolute;
-			z-index: 1;
-		}
-		
-		.position-front{
-			position: absolute;
-			z-index: 2;
-		}
-		
-		.circle {
-			width: 50%;
-			padding-bottom: 50%;
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 			border-radius: 50%;
 			z-index: 3;
 			cursor: pointer;
@@ -93,24 +77,14 @@
 			
 			left: -13%;
 			bottom: -15%;
-		}
-		
-		.block{
-			display: inline-block;
-			vertical-align: top;
+			
+			position: fixed;
+			transition: all ease 1.5s;
 		}
 		
 		.photo{
-<<<<<<< master
 			position: fixed;
 			left: -4%;
-=======
-			min-width: 40%;
-			/* background-color: yellow; */
-			
-			position:fixed;
-			left: -2%;
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 			bottom: 0;
 		}
 		
@@ -132,100 +106,52 @@
 		}
 		
 		.content{
-<<<<<<< master
 			width: 70%;
-=======
-			width: 65%;
-			/* background-color: orange; */
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 			
-			margin-top: 5%;
-			margin-left: 35%;
+			position: absolute;
+			right: 0;
+			top: 0;
 			
-<<<<<<< master
 			padding-top: 5%;
 			padding-bottom: 5%;
 			
 			font-size: 1.05vw;
-=======
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 			text-align: left;
 		}
 		
-<<<<<<< master
 		#profileInfo{
 			position:fixed;
-=======
-		.info{
-			width: 30%;
-			/* background-color: red; */
-			
-			margin-right: 5%;
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 		}
 		
 		.detail-info{
-<<<<<<< master
 			float: right;
 			margin-left: 32%;
-=======
-			width: 60%;
-			/* background-color: gray; */
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 		}
 		
-<<<<<<< master
 		#programInfo{
 			margin-bottom: 6%;
-=======
-		.title{
-			font-size: 2vw;
-			font-weight: bold;
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 		}
 		
-<<<<<<< master
 		
 		/* &타임라인 */
 		#timeLine{
 			width: 100%;
-=======
-		.subtitle{
-			font-size: 1.2vw;
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 		}
 		
-<<<<<<< master
 		#timeGraph{
 			width: 95%;
 			white-space: nowrap;
 			border-spacing: 0px;
-=======
-		table{
-			width: 100%;
-			border-spacing: 10px;
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 		}
 		
-<<<<<<< master
 		#timeGraph td{
 			padding: 0;
 			margin: 0;
 			text-align: center;
-=======
-		tr :nth-child(1){
-			color: var(--maingray);
-			pointer: default;
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 		}
 		
-<<<<<<< master
 		#timeGraph td:nth-child(1), #timeGraph td:nth-child(2), #timeGraph td:nth-child(3), #timeGraph td:nth-child(4), #timeGraph td:nth-child(5){
 			font-size: 1.2vw;
-=======
-		tr :nth-child(2){
-			cursor: pointer;
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 		}
 		
 		#timeGraph td:nth-child(1){
@@ -468,38 +394,28 @@
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	
-<<<<<<< master
 	<div id="helpDiv"></div>
 	<div id="helpBtn"><span><i class="fas fa-question fa"></i></span></div>
 	
 	<div class="position-back bg-circle"></div>
-=======
-	<div class="position-back circle"></div>
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 	
 	<div class="position-front photo block" id="profileImg">
 		<img src="${ contextPath }/resources/img/profile_img.png">
 	</div>
 	
 	<div class="position-front content">
-		<div class="info block">
+		<div class="block" id="profileInfo">
 			<p class="title">
 				강인애<br>
 				KANG IN AE
 			</p>
-<<<<<<< master
 			<p id="subInfo">
-=======
-			
-			<p class="subtitle">
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 				1996. 09. 05<br>
 				kkin09@naver.com<br>
 				서일대학교, 소프트웨어공학과
 			</p>
 		</div>
 		
-<<<<<<< master
 		<div class="detail-info">
 			<div class="block" id="programInfo" style="width: 100%;">
 				<p class="subtitle">
@@ -528,20 +444,9 @@
 			  		<div class="language">#VisualBasic</div>
 			  		<div class="language">#...</div>
 				</div>
-=======
-		
-		<div class="detail-info block">
-			<p class="title">
-				Programming Language
-			</p>
-			
-			<div class="subtitle">
-				&nbsp;
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 			</div>
 			
 			
-<<<<<<< master
 			<div class="block" id="timeLine">
 				<p class="subtitle">
 					Time Line
@@ -551,52 +456,11 @@
 					<table id="timeGraph">
 					</table>
 				</div>
-=======
-			<p class="title">
-				Time Line
-			</p>
-			
-			<div class="subtitle">
-				<table>
-					<tr>
-						<td>2016. 03</td>
-						<td>서일대학교 소프트웨어공학과 입학</td>
-					</tr>
-					<tr>
-						<td>2017. 03</td>
-						<td>서일대학교 학생상담센터 근로장학생 근무</td>
-					</tr>
-					<tr>
-						<td>2017. 11</td>
-						<td>서일대학교 세방도서관 근로장학생 근무</td>
-					</tr>
-					<tr>
-						<td>2018. 07</td>
-						<td>메타소프트 현장실습</td>
-					</tr>
-					<tr>
-						<td>2018. 11</td>
-						<td>서일대학교 졸업작품 발표</td>
-					</tr>
-					<tr>
-						<td>2019. 03</td>
-						<td>서일대학교 소프트웨어공학과 전공심화 입학</td>
-					</tr>
-					<tr>
-						<td>2019. 11</td>
-						<td>KH정보교육원 취업성공패키지 수료</td>
-					</tr>
-					<tr>
-						<td>2020. 08</td>
-						<td>정보처리기사 취득</td>
-					</tr>
-				</table>
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 			</div>
 		</div>
+		
 	</div>
 	
-<<<<<<< master
 	<div class="modal">
 		<div class="modal-content">
 			<span class="close-modal"><i class="far fa-times-circle"></i></span>
@@ -1034,7 +898,5 @@
 		}
 		
 	</script>
-=======
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
 </body>
 </html>
