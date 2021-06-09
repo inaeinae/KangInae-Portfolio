@@ -1,5 +1,5 @@
 
-/* '����ī �� �꽺 �׿�' ��Ʈ */
+/* '스포카 한 산스 네오' 폰트 */
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
 html, body {
@@ -17,20 +17,16 @@ html, body {
 }
 
 /* 
-<<<<<<< master
 컬러차트
 
 #eeeeee - 하얀색
 #393e46/#9098a5 - 회색
 #232931 - 검정색
-=======
-�÷���Ʈ
  
-#4ecca3 - �ʷϻ� (����)
-#eeeeee - �Ͼ��
-#393e46/#9098a5 - ȸ��
-#232931 - ������
->>>>>>> 6b1edb8 배경에 스크롤 이벤트 추가(스크롤 진행도에 따라 배경 도형의 크기 변경) / 타임라인에 git 그래프 스타일 추가(gitTimelineInfo.txt에 정리된 내용을 읽어와 테이블에 적용) / 타임라인 내용 수정
+#4ecca3 - 초록색 (메인)
+#eeeeee - 하얀색
+#393e46/#9098a5 - 회색
+#232931 - 검정색
  */
 :root {
 	--mainwhite: #eeeeee;
@@ -71,4 +67,28 @@ html, body {
 }
 
 
+.position-back {
+    position: absolute;
+    z-index: 1;
+}
 
+.position-front {
+    position: absolute;
+    z-index: 2;
+}
+
+.block {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.title {
+    font-size: 2.2vw;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1.7vw;
+    font-weight: bold;
+    width: 100%;
+}

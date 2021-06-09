@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%  
+	response.setHeader("Cache-Control","no-store");  
+	response.setHeader("Pragma","no-cache");  
+	response.setDateHeader("Expires",0);  
+	if (request.getProtocol().equals("HTTP/1.1"))        
+		response.setHeader("Cache-Control", "no-cache");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,48 +30,6 @@
 			color: var(--mainwhite);
 			overflow-x: hidden;
 			overflow-y: auto;
-		}
-		
-		
-		/* &도움말 */
-		#helpBtn {
-			position: fixed;
-			right: 2vw;
-			bottom: 2vw;
-			width: 2vw;
-			height: 2vw;
-			background-color: var(--mainwhite);
-			border-radius: 50%;
-			z-index: 3;
-			cursor: pointer;
-			transform: scale(1.2);
-			transition: all ease 1.2s;
-			box-shadow: 0px 0px 0.4vw 2px #10121A;
-		}
-		
-		#helpBtn span {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			color: #10121A;
-		}
-		
-		/* #helpBtn span i{
-			transform: scale(1.2);
-		} */
-		
-		#helpDiv{
-			display: none;
-			position: fixed;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.35);
-			opacity: 0;
-			z-index: 3;
-			transition: visibility 0s linear 0.35s, opacity 0.35s 0s, transform 0.35s;
 		}
 		
 		
@@ -150,13 +115,19 @@
 			text-align: center;
 		}
 		
-		#timeGraph td:nth-child(1), #timeGraph td:nth-child(2), #timeGraph td:nth-child(3), #timeGraph td:nth-child(4), #timeGraph td:nth-child(5){
+		#timeGraph td:nth-child(1), td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5){
 			font-size: 1.2vw;
 		}
-		
+		#timeGraph td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5){
+			padding-left: 0.6%;
+		}
+		/* 
 		#timeGraph td:nth-child(1){
 			padding-left: 2%;
 		}
+		#timeGraph td:nth-child(2){
+			padding-left: 1.5%;
+		} */
 		
 		#timeGraph tr td:nth-last-child(2){
 			padding-left: 3%;
@@ -172,8 +143,6 @@
 			background-color: rgba(256, 256, 256, 0.05);
 		}
 		.hover-color-black{
-			/* background-color: rgba(0, 0, 0, 0.125); */
-			/* background-color: rgba(144, 152, 165, 0.35); */
 			color: var(--maingray);
 		}
 		
@@ -389,13 +358,89 @@
 			transition: all ease 0.35s;
 		}
 		
+		
+		/* &도움말 */
+		#helpBtn {
+			position: fixed;
+			right: 2vw;
+			bottom: 2vw;
+			width: 2.5vw;
+			height: 2.5vw;
+			background-color: var(--mainwhite);
+			border-radius: 50%;
+			z-index: 100;
+			cursor: pointer;
+			transform: scale(1.2);
+			transition: all ease 1.2s;
+			box-shadow: 0px 0px 0.4vw 2px #10121A;
+		}
+		
+		#helpBtn span {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: #10121A;
+		}
+		
+		/* #helpBtn span i{
+			transform: scale(1.2);
+		} */
+		
+		#helpDiv{
+			display: none;
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.35);
+			opacity: 0;
+			z-index: 100;
+			transition: visibility 0s linear 0.35s, opacity 0.35s 0s, transform 0.35s;
+		}
+		
+		
+		/* &대기화면 */
+		#loading {
+			vertical-align: middle;
+		  	z-index: 99;
+			transition: all ease 2.0s;
+		}
+		
+		#loading > div {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			display: block;
+		  	opacity: 0.6;
+		  	background: #000;
+		  	z-index: 99;
+		  	text-align: center;
+		}
+		
+		#loading > p {
+    		font-size: 7.0vw;
+			position: absolute;
+		  	top: 50%;
+		  	left: 50%;
+		  	transform: translate( -50%, -100% );
+		  	z-index: 100;
+		}
+		
 	</style>
 </head>
-<body>
+<body onload="resourceLoading();">
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	
 	<div id="helpDiv"></div>
-	<div id="helpBtn"><span><i class="fas fa-question fa"></i></span></div>
+	<div id="helpBtn"><span><i class="fas fa-question fa-lg"></i></span></div>
+	
+	<div id="loading">
+	    <!-- <img src="./resources/img/loadingbar.gif"> -->
+	    <div></div>
+	    <p class="title">Kang In Ae</p>
+	</div>
 	
 	<div class="position-back bg-circle"></div>
 	
@@ -425,6 +470,7 @@
 				<div class="languageList">
 			  		<div class="language">#AndroidStudio</div>
 			  		<div class="language">#Arduino</div>
+			  		<div class="language">#AWS</div>
 			  		<div class="language">#ASP</div>
 			  		<div class="language">#C</div>
 			  		<div class="language">#C#</div>
@@ -471,15 +517,43 @@
 		</div>
 	</div>
 	
+	
 	<script>
+		/* 이미지 프리로딩 */
+		function resourceLoading() {
+			//병렬처리
+			preloading(2, ['help.png']);
+			preloading(1, ['and_1.png', 'and_2.png', 'ard_2.png', 'cshop_2.png', 'ill_1.png', 'ill_2.png', 'ill_3.png', 'ill_4.png', 'pho_1.png', 'pho_2.png', 'pho_3.png', 'spr_1.png', 'spr_2.png', 'vb_1.png'])
+		}
+		
+		function preloading(type, imageArray) {
+			if(type == 1)
+				var dir = './resources/img/hashtag/';
+			else
+				var dir = './resources/img/';
+			
+			let n = imageArray.length;
+			for (let i = 0; i < n; i++) {
+				let img = new Image();
+				img.src = dir + imageArray[i];
+			}
+		}
+		
+		/* 배경 스타일 */
 		$(window).on('scroll', function() {
 			var scrollPercent = ($(window).scrollTop() / ($(document).outerHeight() - $(window).height()))*10;
 			var transSize = 43 + (scrollPercent*1.5)
 			$('.bg-circle').css({'width': transSize + '%', 'padding-bottom': transSize + '%'});
 		});
-		//참고 : https://tyle.io/blog/61
 		
 		$(function() {
+			/* 대기화면 */
+			$('body').css('position', 'fixed');
+			$('#loading').click(function() {
+				$('#loading').hide();
+				$('body').css('position', 'scroll');
+			});
+			
 			var clickLanguage = '',
 				mLength = 0;
 			function toggleModal(type) {
@@ -557,21 +631,22 @@
 			window.addEventListener("click", windowOnClick);
 			
 			$('.language').click(function() {
-				var language = $(this).parent();
-				
-				for(var i=0; i < language.children().length; i++) {
-					if(language.children(':eq('+ i + ')').hasClass('click') == true && $(this).index() != i) {
-						language.children(':eq('+ i + ')').removeClass('click');
-						language.children(':eq('+ i + ')').addClass('looked');
-						break;
+				if($(this).text() != '#AWS') {
+					var language = $(this).parent();
+					
+					for(var i=0; i < language.children().length; i++) {
+						if(language.children(':eq('+ i + ')').hasClass('click') == true && $(this).index() != i) {
+							language.children(':eq('+ i + ')').removeClass('click');
+							language.children(':eq('+ i + ')').addClass('looked');
+							break;
+						}
 					}
+					
+					clickLanguage = $(this).text().slice(1);
+					toggleModal('click');
+					if($(this).hasClass('looked') == true) $(this).removeClass('looked');
+					$(this).addClass('click');
 				}
-				//자식 노트 찾기 참고 : https://m.blog.naver.com/PostView.nhn?blogId=kimnx9006&logNo=220586673921&proxyReferer=https:%2F%2Fwww.google.com%2F
-				
-				clickLanguage = $(this).text().slice(1);
-				toggleModal('click');
-				if($(this).hasClass('looked') == true) $(this).removeClass('looked');
-				$(this).addClass('click');
 			});
 			
 			// 모달창 닫기 버튼 - 마우스 이벤트에 따라 아이콘 바뀌게
@@ -604,12 +679,6 @@
 							
 							$lastClick.removeClass('hover-color-black');
 							modalEvent('close', $(this));
-							
-							/*
-							원본
-							$(this).parent().children('tr:eq(' + clickModal + ')').removeClass('hover-color-black');
-							modalEvent('close', $(this));
-							*/
 						}
 						//클릭한 tr의 내용을 보여줌
 						var head = $(this).html();
@@ -618,12 +687,6 @@
 						
 						clickModal = $(this).index();
 						modalEvent('open', $(this));
-						/*
-						원본
-						//클릭한 tr의 내용을 보여줌
-						clickModal = $(this).index();
-						modalEvent('open', $(this));
-						*/
 						
 					//클릭했던 tr일 때
 					} else {
@@ -655,7 +718,6 @@
 					}
 				}
 				
-				//console.log($('.modal-content').innerHeight() + ' / ' + window.outerHeight*0.65);
 				if(type == 'open') {
 					if($('.modal-content').innerHeight() >= window.outerHeight*0.7)
 						$('.modal-content').css('height', '70vh');
@@ -677,13 +739,22 @@
 			});
 			 */
 			
+			/* 도움말 */
+			var trg = 0;
 			$('#helpBtn').mouseenter(function() {
 				$(this).css('transform', 'scale(1.6)');
 			}).mouseleave(function() {
 				$(this).css('transform', 'scale(1.2)');
 			}).click(function() {
+				if(trg == 0) {
+					$('#loading').hide();
+					$('#helpBtn').html('<span><i class="fas fa-question fa"></i></span>');
+					$('#helpBtn').css({'width':'2vw', 'height':'2vw'});
+					trg = 1;
+				}
+				
 				$('#mTitle').html('사이트 구성과 설명');
-				$('#mTable').html('<tr><td style="text-align: center;"><div class="modal-img-block"><div class="modal-img one-block"><img src="resources/img/hashtag/help.png"/></div></div></td></tr>');
+				$('#mTable').html('<tr><td style="text-align: center;"><div class="modal-img-block"><div class="modal-img one-block"><img src="resources/img/help.png"/></div></div></td></tr>');
 				
 				$('html,body').addClass('fixed');
 				$('#mTable').css('width', '100%');
@@ -691,6 +762,7 @@
 				document.querySelector(".modal").classList.toggle("show-modal");
 			});
 			
+			/* 타임라인 */
 		    var lineData = $.ajax({
                 url: './resources/data/gitTimelineInfo.txt',
                 async: false
@@ -698,7 +770,6 @@
 		    
 		    lineData = lineData.replace(/(\r\n|\n|\r)/gm,"");
 			var lineArr = lineData.split('%');
-			//참고 : https://www.python2.net/questions-12013.htm
 			
 			for(var i in lineArr) {
 				var tableArr = lineArr[i].split('^');
@@ -721,7 +792,7 @@
 			var hoverTr = [99999, 0];
 			//hover된 가지의 색을 담는 배열
 			var hoverColor = [];
-			$('#timeGraph tr td:nth-last-child(1)').mouseenter(function() {
+			$('#timeGraph tr td:nth-last-child(1), td:nth-last-child(2)').mouseenter(function() {
 				//timline table의 내용에 mouseover했을 때
 				if($(this).text() != '' && $(this).text().indexOf('Merge')) {
 					//timeLineEvent($(this), 'enter');
@@ -779,7 +850,6 @@
 					}
 				}
 			});
-			//참고 : https://m.blog.naver.com/PostView.nhn?blogId=interbirds&logNo=220120122658&proxyReferer=https:%2F%2Fwww.google.com%2F
 			
 		});
 
@@ -853,8 +923,11 @@
 		
 		function settingTimeLine() {
 			var mainBranchColor;
-			var colorArr = ['rgb(255,0,0)', 'rgb(255,94,0)', 'rgb(255,187,0)', 'rgb(255,228,0)', 'rgb(171,242,0)',
-				'rgb(0,216,255)', 'rgb(0,84,255)', 'rgb(1,0,255)', 'rgb(95,0,255)', 'rgb(255,0,221)'];
+			/* var colorArr = ['rgb(255,0,0)', 'rgb(255,94,0)', 'rgb(255,187,0)', 'rgb(255,228,0)', 'rgb(171,242,0)',
+				'rgb(0,216,255)', 'rgb(0,84,255)', 'rgb(1,0,255)', 'rgb(95,0,255)', 'rgb(255,0,221)']; */
+			var colorArr = ['#ef3f4a', '#f2728b', '#ffd504', '#80b563', '#25aae2', '#49b9ba', '#9d7eb9', '#f89552',
+				'#d4e25b', '#7fd3ed', '#aedfdc', '#bcb8dd'];
+			
 			for(var i in colorArr) {
 				colorArr[colorArr.length-1] = colorArr.splice(Math.floor(Math.random()*i),1)[0];
 			}
@@ -864,14 +937,26 @@
 				var hereInfo = $('#timeGraph tr:eq(' + k + ') td:eq(6)').text();
 				
 				if(here.text() == '*' && hereInfo != '' && hereInfo.indexOf('Merge') && checkBranch(k)) {
+					
 					var branchMap = searchBranch('branch', k);
 					var color1, color2;
+					var range = 715;
 					if(colorArr.length > 0) color1 = colorArr.pop();
-					else color1 = 'rgb(' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ')';
+					else {
+						var temp1 = Math.floor(Math.random()*255 + 50);
+						var temp2 = Math.floor(Math.random()*255 + 50);
+						var temp3 = range - temp1 - temp2;
+						color1 = 'rgb(' + temp1 + ',' + temp2 + ',' + temp3 + ')';
+					}
 					
 					if(branchMap.size == 5) {
 						if(colorArr.length > 0) color2 = colorArr.pop();
-						else color2 = 'rgb(' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ')';
+						else {
+							var temp1 = Math.floor(Math.random()*255 + 50);
+							var temp2 = Math.floor(Math.random()*255 + 50);
+							var temp3 = range - temp1 - temp2;
+							color2 = 'rgb(' + temp1 + ',' + temp2 + ',' + temp3 + ')';
+						}
 					}
 					
 					for(var i = k; i > k - branchMap.size; i--) {
@@ -890,8 +975,14 @@
 						here.css('color', mainBranchColor);
 						//here.addClass('hover-bold hover-bold');
 					} else {
+						var range = 715;
 						if(colorArr.length > 0) mainBranchColor = colorArr.pop();
-						else mainBranchColor = 'rgb(' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ')';
+						else {
+							var temp1 = Math.floor(Math.random()*255 + 50);
+							var temp2 = Math.floor(Math.random()*255 + 50);
+							var temp3 = range - temp1 - temp2;
+							mainBranchColor = 'rgb(' + temp1 + ',' + temp2 + ',' + temp3 + ')';
+						}
 					}
 				}
 			}
