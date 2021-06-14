@@ -14,14 +14,15 @@
 	
 	<meta charset="UTF-8">
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 	<!-- 마크다운 파일 -->
 	<script src="https://cdn.jsdelivr.net/npm/showdown@1.9.0/dist/showdown.min.js"></script>
 	<!-- 폰트어썸 -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	<!-- 파비콘 -->
+	<link rel="icon" href="${contextPath}/resources/img/favicon.svg"/>
 	
-	<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
-	
-	<title>Kang Inae</title>
+	<title>Kang In Ae</title>
 	
 	<style>
 		/* &페이지 */
@@ -38,7 +39,8 @@
 			width: 43%;
 			padding-bottom: 43%;
 			border-radius: 50%;
-			border: 10px solid blue;
+			/* border: 10px solid blue; */
+			border: 10px solid var(--pointblue);
 			
 			left: -13%;
 			bottom: -15%;
@@ -139,11 +141,13 @@
 			text-align: left;
 		}
 		
-		.hover-bg-white{
+		.hover-bg{
 			background-color: rgba(256, 256, 256, 0.05);
 		}
-		.hover-color-black{
-			color: var(--maingray);
+		
+		.hover-color{
+			/* color: var(--maingray); */
+			color: var(--pointblue);
 		}
 		
 		.hover-trans{
@@ -171,6 +175,7 @@
 			line-height: 2.6;
 		}
 		
+		/* 태그 */
 		.language{
 			display: inline-block;
 			line-height: 1.8;
@@ -183,16 +188,26 @@
 			font-size: 0.85vw;
 			cursor: pointer;
 		}
-		
-		.click{
-			color: var(--mainwhite);
-			border: 0.17vw var(--mainwhite) solid;
-			transition: all ease 0.35s;
-		}
-		
 		.looked{
 			color: #4e4e4e;
 			border: 0.155vw #4e4e4e solid;
+			transition: all ease 0.35s;
+		}
+		
+		/* 강조 태그 */
+		.important{
+			border: 0.155vw var(--pointblue) solid;
+			color: var(--pointblue);
+		}
+		.important-looked{
+			border: 0.155vw #26407b solid;
+			color: #26407b;
+		}
+		
+		/* 클릭 태그 */
+		.click{
+			color: var(--mainwhite);
+			border: 0.17vw var(--mainwhite) solid;
 			transition: all ease 0.35s;
 		}
 		
@@ -304,15 +319,17 @@
 			font-size: 0.7vw;
 		}
 		
+		/* 모달 태그 */
 		.pl-tag{
-			border: 0.17vw var(--maingray) solid;
+			border: 0.16vw var(--maingray) solid;
 			color: var(--maingray);
 		}
 		.tp-tag{
-			border: 0.17vw var(--maingray) solid;
+			border: 0.16vw var(--maingray) solid;
 			background-color: var(--maingray);
 			color: var(--mainwhite);
 		}
+		/* 타임라인 태그 */
 		.tl-tag{
 			border: 0.155vw var(--mainwhite) solid;
 			color: var(--mainwhite);
@@ -362,16 +379,16 @@
 		/* &도움말 */
 		#helpBtn {
 			position: fixed;
-			right: 2vw;
-			bottom: 2vw;
-			width: 2.5vw;
-			height: 2.5vw;
+			right: 3vw;
+			bottom: 3vw;
+			width: 3vw;
+			height: 3vw;
 			background-color: var(--mainwhite);
 			border-radius: 50%;
 			z-index: 100;
 			cursor: pointer;
 			transform: scale(1.2);
-			transition: all ease 1.2s;
+			transition: all ease 0.7s;
 			box-shadow: 0px 0px 0.4vw 2px #10121A;
 		}
 		
@@ -405,7 +422,6 @@
 		#loading {
 			vertical-align: middle;
 		  	z-index: 99;
-			transition: all ease 2.0s;
 		}
 		
 		#loading > div {
@@ -434,7 +450,7 @@
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	
 	<div id="helpDiv"></div>
-	<div id="helpBtn"><span><i class="fas fa-question fa-lg"></i></span></div>
+	<div id="helpBtn"><span><i class="fas fa-question fa-2x"></i></span></div>
 	
 	<div id="loading">
 	    <!-- <img src="./resources/img/loadingbar.gif"> -->
@@ -473,20 +489,17 @@
 			  		<div class="language">#AWS</div>
 			  		<div class="language">#ASP</div>
 			  		<div class="language">#C</div>
-			  		<div class="language">#C#</div>
+			  		<div class="language important">#C#</div>
 			  		<div class="language">#C++</div>
-			  		<div class="language">#CSS</div>
 			  		<div class="language">#Database</div>
 			  		<div class="language">#Git</div>
-			  		<div class="language">#HTML</div>
-			  		<div class="language">#Illustrator & Photoshop</div>
+			  		<div class="language">#HTML & CSS & JavaScript</div>
+			  		<div class="language important">#Illustrator & Photoshop</div>
 			  		<div class="language">#Java</div>
-			  		<div class="language">#JavaScript</div>
 			  		<div class="language">#MFC</div>
-			  		<div class="language">#Spring</div>
+			  		<div class="language important">#Spring</div>
 			  		<div class="language">#Unity</div>
 			  		<div class="language">#Unix</div>
-			  		<div class="language">#UML</div>
 			  		<div class="language">#VisualBasic</div>
 			  		<div class="language">#...</div>
 				</div>
@@ -519,11 +532,19 @@
 	
 	
 	<script>
+		
+		/* 배경 스타일 */
+		$(window).on('scroll', function() {
+			var scrollPercent = ($(window).scrollTop() / ($(document).outerHeight() - $(window).height()))*10;
+			var transSize = 43 + (scrollPercent*1.5)
+			$('.bg-circle').css({'width': transSize + '%', 'padding-bottom': transSize + '%'});
+		});
+		
 		/* 이미지 프리로딩 */
 		function resourceLoading() {
 			//병렬처리
 			preloading(2, ['help.png']);
-			preloading(1, ['and_1.png', 'and_2.png', 'ard_2.png', 'cshop_2.png', 'ill_1.png', 'ill_2.png', 'ill_3.png', 'ill_4.png', 'pho_1.png', 'pho_2.png', 'pho_3.png', 'spr_1.png', 'spr_2.png', 'vb_1.png'])
+			preloading(1, ['and_2.png', 'ard_2.png', 'cshop_2.png', 'ill_1.png', 'ill_2.png', 'ill_3.png', 'spr_1.png', 'spr_2.png'])
 		}
 		
 		function preloading(type, imageArray) {
@@ -539,21 +560,15 @@
 			}
 		}
 		
-		/* 배경 스타일 */
-		$(window).on('scroll', function() {
-			var scrollPercent = ($(window).scrollTop() / ($(document).outerHeight() - $(window).height()))*10;
-			var transSize = 43 + (scrollPercent*1.5)
-			$('.bg-circle').css({'width': transSize + '%', 'padding-bottom': transSize + '%'});
-		});
-		
 		$(function() {
 			/* 대기화면 */
-			$('body').css('position', 'fixed');
+			$('html,body').addClass('fixed');
 			$('#loading').click(function() {
 				$('#loading').hide();
-				$('body').css('position', 'scroll');
+				$('html,body').removeClass('fixed');
 			});
 			
+			/* 프로그래밍언어 모달창 */
 			var clickLanguage = '',
 				mLength = 0;
 			function toggleModal(type) {
@@ -573,7 +588,7 @@
 							for(i in contxtArr){
 								if(contxtArr[i].substr(0,1) == '&') {
 									triger = 1;
-									var appendCode;
+									var appendCode = '';
 									var txt = contxtArr[i].split('@');
 									var tag = txt[2].split('(');
 									
@@ -584,7 +599,7 @@
 									if(tag.length > 1) {
 										for(var i = 1; i < tag.length; i++) {
 											var contxt = tag[i].substring(0, tag[i].length-1);
-											var tagType;
+											var tagType = '';
 											if(contxt == 'Front' || contxt == 'Back') tagType = 'small-tag tp-tag';
 											else tagType = 'small-tag pl-tag';
 											appendCode = appendCode + '<div class="' + tagType + '">' + tag[i].substring(0, tag[i].length-1) + '</div>';
@@ -619,6 +634,8 @@
 					
 					$('html,body').addClass('fixed');
 				} else {
+					clickModal = 99999;
+					clickTag = '';
 					$('html,body').removeClass('fixed');
 				}
 
@@ -630,45 +647,51 @@
 			document.querySelector(".close-modal").addEventListener("click", toggleModal);
 			window.addEventListener("click", windowOnClick);
 			
+			/* 프로그래밍 언어 / 태그 */
 			$('.language').click(function() {
-				if($(this).text() != '#AWS') {
-					var language = $(this).parent();
-					
-					for(var i=0; i < language.children().length; i++) {
-						if(language.children(':eq('+ i + ')').hasClass('click') == true && $(this).index() != i) {
-							language.children(':eq('+ i + ')').removeClass('click');
-							language.children(':eq('+ i + ')').addClass('looked');
-							break;
-						}
+				var language = $(this).parent();
+				
+				for(var i=0; i < language.children().length; i++) {
+					var target = language.children(':eq('+ i + ')');
+					if(target.hasClass('click') == true && $(this).index() != i) {
+						target.removeClass('click');
+						
+						if(target.hasClass('important') == true) target.addClass('important-looked');
+						else target.addClass('looked');
+						break;
 					}
-					
-					clickLanguage = $(this).text().slice(1);
-					toggleModal('click');
-					if($(this).hasClass('looked') == true) $(this).removeClass('looked');
-					$(this).addClass('click');
 				}
+				
+				clickLanguage = $(this).text().slice(1);
+				toggleModal('click');
+				
+				if($(this).hasClass('looked') == true) $(this).removeClass('looked');
+				else if($(this).hasClass('important-looked') == true) $(this).removeClass('important-looked');
+				
+				$(this).addClass('click');
 			});
 			
-			// 모달창 닫기 버튼 - 마우스 이벤트에 따라 아이콘 바뀌게
+			// 모달창 닫기 아이콘
 			$('.close-modal').mouseenter(function() {
 				$('.close-modal i').attr('class', 'fas fa-times-circle');
 			}).mouseleave(function() {
 				$('.close-modal i').attr('class', 'far fa-times-circle');
 			});
 			
-			
+			/* 모달창 탭 */
 			var clickModal = 99999;
 			var clickTag = '';
 			$(document).on('mouseenter', '.headTr', function(){
 				if($(this).parents().children('tr:eq(' + ($(this).index() + 1) + ')').hasClass('hidden') == true) {
 					$(this).css('cursor', 'pointer');
-					$(this).addClass('hover-color-black');
+					$(this).addClass('hover-color');
 				}
 			}).on('mouseleave', '.headTr', function(){
-				if(clickModal != $(this).index()) $('#mTable tr:eq(' + $(this).index() + ')').removeClass('hover-color-black');
+				if(clickModal != $(this).index()) $('#mTable tr:eq(' + $(this).index() + ')').removeClass('hover-color');
 			}).on('click', '.headTr', function(){
 				if($(this).parents().children('tr:eq(' + ($(this).index() + 1) + ')').hasClass('hidden') == true) {
 					//클릭했던 tr이 아닐 때
+					
 					if(clickModal != $(this).index()) {
 						//clickModal이 초기값이 아닐 때 클릭했던 tr의 bgcolor를 돌려놓고 내용을 숨김
 						if(clickModal != 99999) {
@@ -677,7 +700,7 @@
 							$lastClick.html(head.slice(0, head.length-5) + clickTag + head.slice(head.length-5, head.length));
 							clickTag = '';
 							
-							$lastClick.removeClass('hover-color-black');
+							$lastClick.removeClass('hover-color');
 							modalEvent('close', $(this));
 						}
 						//클릭한 tr의 내용을 보여줌
@@ -695,7 +718,7 @@
 						$(this).html(head.slice(0, head.length-5) + clickTag + head.slice(head.length-5, head.length));
 						clickTag = '';
 						
-						$(this).removeClass('hover-color-black');
+						$(this).removeClass('hover-color');
 						modalEvent('close', $(this));
 						clickModal = 99999;
 					}
@@ -746,13 +769,14 @@
 			}).mouseleave(function() {
 				$(this).css('transform', 'scale(1.2)');
 			}).click(function() {
+				/* 대기화면 */
 				if(trg == 0) {
 					$('#loading').hide();
-					$('#helpBtn').html('<span><i class="fas fa-question fa"></i></span>');
-					$('#helpBtn').css({'width':'2vw', 'height':'2vw'});
+					$('html,body').removeClass('fixed');
 					trg = 1;
 				}
-				
+
+				$(this).css('transform', 'scale(1.2)');
 				$('#mTitle').html('사이트 구성과 설명');
 				$('#mTable').html('<tr><td style="text-align: center;"><div class="modal-img-block"><div class="modal-img one-block"><img src="resources/img/help.png"/></div></div></td></tr>');
 				
@@ -817,13 +841,13 @@
 							
 							target.css('color', 'white');
 							target.addClass('hover-trans');
-							target.parent().addClass('hover-bg-white');
+							target.parent().addClass('hover-bg');
 						}
 						
 					//branch가 존재하지 않을 때
 					} else {
 						$('#timeGraph tr:eq(' + here + ') td:eq(0)').addClass('hover-trans');
-						$('#timeGraph tr:eq(' + here + ')').addClass('hover-bg-white');
+						$('#timeGraph tr:eq(' + here + ')').addClass('hover-bg');
 						hoverTr[1] = here;
 						//hoverColor.push('var(--mainwhite)');
 					}
@@ -840,13 +864,13 @@
 						
 						//해당 branch의 색을 돌려줌
 						for(var i = here; i >= endCommit; i--) {
-							$('#timeGraph tr').eq(i).removeClass('hover-bg-white');
+							$('#timeGraph tr').eq(i).removeClass('hover-bg');
 							$('#timeGraph tr:eq(' + i + ') td:eq(' + hoverColor.shift() + ')').css('color', hoverColor.shift());
 						}
 						
 					//branch가 존재하지 않을 때
 					} else {
-						$(this).parent().removeClass('hover-bg-white');
+						$(this).parent().removeClass('hover-bg');
 					}
 				}
 			});
@@ -921,12 +945,29 @@
 			}
 		}
 		
+		/* 타임라인 색 */
+		function pickColor() {
+			var rgb = [];
+			
+			rgb[0] = Math.floor(Math.random()*255);
+			rgb[1] = Math.floor(Math.random()*255);
+			
+			if(rgb[0] + rgb[1] >= 400) rgb[2] = Math.floor(Math.random()*(600 - (rgb[0] + rgb[1]))); //rgb합이 600 이하 (흰색 계열 제외)
+			else if(rgb[0] + rgb[1] >= 250) rgb[2] = Math.floor(Math.random()*255);
+			else rgb[2] = Math.floor(Math.random()*105) + 150; //150~255 (검은색 계열 제외)
+			
+			for(var i in rgb) {
+				rgb[rgb.length-1] = rgb.splice(Math.floor(Math.random()*i),1)[0];
+			}
+			
+			return 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ')';
+		}
+		
+		/* 타임라인 */
 		function settingTimeLine() {
 			var mainBranchColor;
-			/* var colorArr = ['rgb(255,0,0)', 'rgb(255,94,0)', 'rgb(255,187,0)', 'rgb(255,228,0)', 'rgb(171,242,0)',
-				'rgb(0,216,255)', 'rgb(0,84,255)', 'rgb(1,0,255)', 'rgb(95,0,255)', 'rgb(255,0,221)']; */
-			var colorArr = ['#ef3f4a', '#f2728b', '#ffd504', '#80b563', '#25aae2', '#49b9ba', '#9d7eb9', '#f89552',
-				'#d4e25b', '#7fd3ed', '#aedfdc', '#bcb8dd'];
+			var colorArr = ['#ff1a46', '#ff55b2', '#ffe600', '#9eff03',
+				'#4399ff', '#3bffde', '#a373ff', '#ff8b2c'];
 			
 			for(var i in colorArr) {
 				colorArr[colorArr.length-1] = colorArr.splice(Math.floor(Math.random()*i),1)[0];
@@ -940,23 +981,13 @@
 					
 					var branchMap = searchBranch('branch', k);
 					var color1, color2;
-					var range = 715;
+					
 					if(colorArr.length > 0) color1 = colorArr.pop();
-					else {
-						var temp1 = Math.floor(Math.random()*255 + 50);
-						var temp2 = Math.floor(Math.random()*255 + 50);
-						var temp3 = range - temp1 - temp2;
-						color1 = 'rgb(' + temp1 + ',' + temp2 + ',' + temp3 + ')';
-					}
+					else color1 = pickColor();
 					
 					if(branchMap.size == 5) {
 						if(colorArr.length > 0) color2 = colorArr.pop();
-						else {
-							var temp1 = Math.floor(Math.random()*255 + 50);
-							var temp2 = Math.floor(Math.random()*255 + 50);
-							var temp3 = range - temp1 - temp2;
-							color2 = 'rgb(' + temp1 + ',' + temp2 + ',' + temp3 + ')';
-						}
+						else color2 = pickColor();
 					}
 					
 					for(var i = k; i > k - branchMap.size; i--) {
@@ -977,12 +1008,7 @@
 					} else {
 						var range = 715;
 						if(colorArr.length > 0) mainBranchColor = colorArr.pop();
-						else {
-							var temp1 = Math.floor(Math.random()*255 + 50);
-							var temp2 = Math.floor(Math.random()*255 + 50);
-							var temp3 = range - temp1 - temp2;
-							mainBranchColor = 'rgb(' + temp1 + ',' + temp2 + ',' + temp3 + ')';
-						}
+						else mainBranchColor = pickColor();
 					}
 				}
 			}

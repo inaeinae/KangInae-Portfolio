@@ -1,69 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%  
+	response.setHeader("Cache-Control","no-store");  
+	response.setHeader("Pragma","no-cache");  
+	response.setDateHeader("Expires",0);  
+	if (request.getProtocol().equals("HTTP/1.1"))        
+		response.setHeader("Cache-Control", "no-cache");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 	
 	<meta charset="UTF-8">
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 	<!-- 마크다운 파일 -->
 	<script src="https://cdn.jsdelivr.net/npm/showdown@1.9.0/dist/showdown.min.js"></script>
 	<!-- 폰트어썸 -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	<!-- 파비콘 -->
+	<link rel="icon" href="${contextPath}/resources/img/favicon.svg"/>
 	
-	<link href="${contextPath}/resources/css/style.css" rel="stylesheet">
-	
-	<title>Kang Inae</title>
+	<title>Kang In Ae</title>
 	
 	<style>
 		/* &페이지 */
 		html,body {
 			background-color: var(--mainblack);
 			color: var(--mainwhite);
-			overflow: auto;
-		}
-		
-		
-		/* &도움말 */
-		#helpBtn {
-			position: fixed;
-			right: 2vw;
-			bottom: 2vw;
-			width: 2vw;
-			height: 2vw;
-			background-color: var(--mainwhite);
-			border-radius: 50%;
-			z-index: 3;
-			cursor: pointer;
-			transform: scale(1.2);
-			transition: all ease 1.2s;
-			box-shadow: 0px 0px 0.4vw 2px #10121A;
-		}
-		
-		#helpBtn span {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			color: #10121A;
-		}
-		
-		/* #helpBtn span i{
-			transform: scale(1.2);
-		} */
-		
-		#helpDiv{
-			display: none;
-			position: fixed;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.35);
-			opacity: 0;
-			z-index: 3;
-			transition: visibility 0s linear 0.35s, opacity 0.35s 0s, transform 0.35s;
+			overflow-x: hidden;
+			overflow-y: auto;
 		}
 		
 		
@@ -72,7 +39,8 @@
 			width: 43%;
 			padding-bottom: 43%;
 			border-radius: 50%;
-			border: 10px solid blue;
+			/* border: 10px solid blue; */
+			border: 10px solid var(--pointblue);
 			
 			left: -13%;
 			bottom: -15%;
@@ -82,7 +50,6 @@
 		}
 		
 		.photo{
-			/* background-color: yellow; */
 			position: fixed;
 			left: -4%;
 			bottom: 0;
@@ -106,7 +73,6 @@
 		}
 		
 		.content{
-			/* background-color: orange; */
 			width: 70%;
 			
 			position: absolute;
@@ -116,12 +82,11 @@
 			padding-top: 5%;
 			padding-bottom: 5%;
 			
-			font-size: 1.1vw;
+			font-size: 1.05vw;
 			text-align: left;
 		}
 		
 		#profileInfo{
-			/* background-color: red; */
 			position:fixed;
 		}
 		
@@ -141,7 +106,7 @@
 		}
 		
 		#timeGraph{
-			width: 85%;
+			width: 95%;
 			white-space: nowrap;
 			border-spacing: 0px;
 		}
@@ -152,14 +117,19 @@
 			text-align: center;
 		}
 		
-		#timeGraph td:nth-child(1), #timeGraph td:nth-child(2), #timeGraph td:nth-child(3), #timeGraph td:nth-child(4), #timeGraph td:nth-child(5){
-			/* width: 2%; */
+		#timeGraph td:nth-child(1), td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5){
 			font-size: 1.2vw;
 		}
-		
+		#timeGraph td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5){
+			padding-left: 0.6%;
+		}
+		/* 
 		#timeGraph td:nth-child(1){
 			padding-left: 2%;
 		}
+		#timeGraph td:nth-child(2){
+			padding-left: 1.5%;
+		} */
 		
 		#timeGraph tr td:nth-last-child(2){
 			padding-left: 3%;
@@ -175,8 +145,6 @@
 			background-color: rgba(256, 256, 256, 0.05);
 		}
 		.hover-color-black{
-			/* background-color: rgba(0, 0, 0, 0.125); */
-			/* background-color: rgba(144, 152, 165, 0.35); */
 			color: var(--maingray);
 		}
 		
@@ -207,26 +175,35 @@
 		
 		.language{
 			display: inline-block;
-			line-height: 2;
-			border: 2px var(--lightgray) solid;
+			line-height: 1.8;
+			border: 0.155vw var(--lightgray) solid;
 			color: var(--lightgray);
 			border-radius: 2vw;
-			padding-left: 2%;
-			padding-right: 2%;
+			padding-left: 1.5%;
+			padding-right: 1.5%;
 			margin-right: 1%;
-			font-size: 0.9vw;
+			font-size: 0.85vw;
 			cursor: pointer;
 		}
 		
+		.important{
+			border: 0.155vw var(--pointblue) solid;
+			color: var(--pointblue);
+		}
+		.important-looked{
+			border: 0.155vw #3a4a6d solid;
+			color: #3a4a6d;
+		}
+				
 		.click{
 			color: var(--mainwhite);
-			border: 2px var(--mainwhite) solid;
+			border: 0.17vw var(--mainwhite) solid;
 			transition: all ease 0.35s;
 		}
 		
 		.looked{
 			color: #4e4e4e;
-			border: 2px #4e4e4e solid;
+			border: 0.155vw #4e4e4e solid;
 			transition: all ease 0.35s;
 		}
 		
@@ -261,7 +238,6 @@
 		
 		.modal-content{
 			position: absolute;
-			overflow: scroll;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
@@ -269,11 +245,12 @@
 			color: var(--mainblack);
 			padding: 4rem 3rem;
 			width: 65%;
-			
 			height: auto;
 			transition: all ease 0.35s;
-			/* height: 70vh; */
-			/* border-radius: 0.5rem; */
+			
+			/* overflow: scroll; */
+			overflow-x: hidden;
+			overflow-y: auto;
 		}
 		
 		.modal-title{
@@ -331,21 +308,27 @@
 			vertical-align: middle;
 			line-height: 1.6;
 			border-radius: 2vw;
-			padding-left: 0.8%;
-			padding-right: 0.8%;
+			padding-left: 1%;
+			padding-right: 1%;
 			margin-left: 1%;
 			font-weight: bold;
-			font-size: 0.73vw;
+			font-size: 0.7vw;
 		}
 		
 		.pl-tag{
-			border: 0.18vw var(--maingray) solid;
+			border: 0.17vw var(--maingray) solid;
 			color: var(--maingray);
 		}
 		.tp-tag{
-			border: 0.18vw var(--maingray) solid;
+			border: 0.17vw var(--maingray) solid;
 			background-color: var(--maingray);
 			color: var(--mainwhite);
+		}
+		.tl-tag{
+			border: 0.155vw var(--mainwhite) solid;
+			color: var(--mainwhite);
+			font-size: 0.73vw;
+			font-weight: normal;
 		}
 		
 		.modal-img-block{
@@ -376,13 +359,98 @@
 			position: fixed;
 		}
 		
+		.modal-link{
+			font-weight: bold;
+			cursor: pointer;
+			
+			background-color: var(--mainblack);
+			color: white;
+			padding: 0.3%;
+			transition: all ease 0.35s;
+		}
+		
+		
+		/* &도움말 */
+		#helpBtn {
+			position: fixed;
+			right: 2vw;
+			bottom: 2vw;
+			width: 2.5vw;
+			height: 2.5vw;
+			background-color: var(--mainwhite);
+			border-radius: 50%;
+			z-index: 100;
+			cursor: pointer;
+			transform: scale(1.2);
+			transition: all ease 0.7s;
+			box-shadow: 0px 0px 0.4vw 2px #10121A;
+		}
+		
+		#helpBtn span {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: #10121A;
+		}
+		
+		/* #helpBtn span i{
+			transform: scale(1.2);
+		} */
+		
+		#helpDiv{
+			display: none;
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.35);
+			opacity: 0;
+			z-index: 100;
+			transition: visibility 0s linear 0.35s, opacity 0.35s 0s, transform 0.35s;
+		}
+		
+		
+		/* &대기화면 */
+		#loading {
+			vertical-align: middle;
+		  	z-index: 99;
+		}
+		
+		#loading > div {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			display: block;
+		  	opacity: 0.6;
+		  	background: #000;
+		  	z-index: 99;
+		  	text-align: center;
+		}
+		
+		#loading > p {
+    		font-size: 7.0vw;
+			position: absolute;
+		  	top: 50%;
+		  	left: 50%;
+		  	transform: translate( -50%, -100% );
+		  	z-index: 100;
+		}
+		
 	</style>
 </head>
-<body>
+<body onload="resourceLoading();">
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	
 	<div id="helpDiv"></div>
-	<div id="helpBtn"><span><i class="fas fa-question fa"></i></span></div>
+	<div id="helpBtn"><span><i class="fas fa-question fa-lg"></i></span></div>
+	
+	<div id="loading">
+	    <!-- <img src="./resources/img/loadingbar.gif"> -->
+	    <div></div>
+	    <p class="title">Kang In Ae</p>
+	</div>
 	
 	<div class="position-back bg-circle"></div>
 	
@@ -412,22 +480,23 @@
 				<div class="languageList">
 			  		<div class="language">#AndroidStudio</div>
 			  		<div class="language">#Arduino</div>
+			  		<div class="language">#AWS</div>
 			  		<div class="language">#ASP</div>
 			  		<div class="language">#C</div>
-			  		<div class="language">#C#</div>
+			  		<div class="language important">#C#</div>
 			  		<div class="language">#C++</div>
 			  		<div class="language">#CSS</div>
 			  		<div class="language">#Database</div>
 			  		<div class="language">#Git</div>
 			  		<div class="language">#HTML</div>
-			  		<div class="language">#Illustrator</div>
+			  		<div class="language important">#Illustrator & Photoshop</div>
 			  		<div class="language">#Java</div>
 			  		<div class="language">#JavaScript</div>
 			  		<div class="language">#MFC</div>
-			  		<div class="language">#Photoshop</div>
-			  		<div class="language">#Spring</div>
+			  		<div class="language important">#Spring</div>
 			  		<div class="language">#Unity</div>
 			  		<div class="language">#Unix</div>
+			  		<div class="language">#UML</div>
 			  		<div class="language">#VisualBasic</div>
 			  		<div class="language">#...</div>
 				</div>
@@ -458,16 +527,44 @@
 		</div>
 	</div>
 	
+	
 	<script>
 		
+		/* 배경 스타일 */
 		$(window).on('scroll', function() {
 			var scrollPercent = ($(window).scrollTop() / ($(document).outerHeight() - $(window).height()))*10;
 			var transSize = 43 + (scrollPercent*1.5)
 			$('.bg-circle').css({'width': transSize + '%', 'padding-bottom': transSize + '%'});
 		});
-		//참고 : https://tyle.io/blog/61
+		
+		/* 이미지 프리로딩 */
+		function resourceLoading() {
+			//병렬처리
+			preloading(2, ['help.png']);
+			preloading(1, ['and_1.png', 'and_2.png', 'ard_2.png', 'cshop_2.png', 'ill_1.png', 'ill_2.png', 'ill_3.png', 'ill_4.png', 'pho_1.png', 'pho_2.png', 'pho_3.png', 'spr_1.png', 'spr_2.png', 'vb_1.png'])
+		}
+		
+		function preloading(type, imageArray) {
+			if(type == 1)
+				var dir = './resources/img/hashtag/';
+			else
+				var dir = './resources/img/';
+			
+			let n = imageArray.length;
+			for (let i = 0; i < n; i++) {
+				let img = new Image();
+				img.src = dir + imageArray[i];
+			}
+		}
 		
 		$(function() {
+			/* 대기화면 */
+			$('body').css('position', 'fixed');
+			$('#loading').click(function() {
+				$('#loading').hide();
+				$('body').css('position', 'scroll');
+			});
+			
 			var clickLanguage = '',
 				mLength = 0;
 			function toggleModal(type) {
@@ -489,17 +586,18 @@
 									triger = 1;
 									var appendCode;
 									var txt = contxtArr[i].split('@');
-									var tag = txt[1].split('(');
+									var tag = txt[2].split('(');
 									
 									appendCode = '<tr class="headTr hover-trans"><td style="text-align: center;">' + txt[0].slice(2) + '</td>';
+									appendCode = appendCode + '<td>' + txt[1] + '</td>';
 									appendCode = appendCode + '<td>' + tag[0];
 									
 									if(tag.length > 1) {
 										for(var i = 1; i < tag.length; i++) {
 											var contxt = tag[i].substring(0, tag[i].length-1);
 											var tagType;
-											if(contxt != 'Front' && contxt != 'Back') tagType = 'small-tag pl-tag';
-											else tagType = 'small-tag tp-tag';
+											if(contxt == 'Front' || contxt == 'Back') tagType = 'small-tag tp-tag';
+											else tagType = 'small-tag pl-tag';
 											appendCode = appendCode + '<div class="' + tagType + '">' + tag[i].substring(0, tag[i].length-1) + '</div>';
 										}
 									}
@@ -508,7 +606,13 @@
 									$('#mTable').append(appendCode);
 								} else if(triger == 1) {
 									if(contxtArr[i].substr(0,1) == '>') {
-										$('#mTable').append('<tr class="hidTr hidden"><td colspan="2">' + contxtArr[i].slice(2) + '</td></tr>');
+										var hidContext = contxtArr[i].slice(2);
+										
+										if(hidContext.substr(0, 4) == '<div') {
+											$('#mTable').append('<tr class="hidTr hidden"><td colspan="3" style="font-size:1.6vw;">' + hidContext + '</td></tr>');
+										} else {
+											$('#mTable').append('<tr class="hidTr hidden"><td colspan="3">' + hidContext + '</td></tr>');
+										}
 									} else {
 										triger == 0;
 									}
@@ -528,7 +632,8 @@
 				} else {
 					$('html,body').removeClass('fixed');
 				}
-				
+
+				$('#mTable').css('width', '90%');
 				document.querySelector(".modal").classList.toggle("show-modal");
 			}
 			
@@ -536,31 +641,40 @@
 			document.querySelector(".close-modal").addEventListener("click", toggleModal);
 			window.addEventListener("click", windowOnClick);
 			
+			/* 프로그래밍 언어 / 태그 */
 			$('.language').click(function() {
 				var language = $(this).parent();
 				
 				for(var i=0; i < language.children().length; i++) {
-					if(language.children(':eq('+ i + ')').hasClass('click') == true && $(this).index() != i) {
-						language.children(':eq('+ i + ')').removeClass('click');
-						language.children(':eq('+ i + ')').addClass('looked');
+					var target = language.children(':eq('+ i + ')');
+					if(target.hasClass('click') == true && $(this).index() != i) {
+						target.removeClass('click');
+						
+						if(target.hasClass('important') == true) target.addClass('important-looked');
+						else target.addClass('looked');
 						break;
 					}
 				}
-				//자식 노트 찾기 참고 : https://m.blog.naver.com/PostView.nhn?blogId=kimnx9006&logNo=220586673921&proxyReferer=https:%2F%2Fwww.google.com%2F
 				
 				clickLanguage = $(this).text().slice(1);
 				toggleModal('click');
+				
 				if($(this).hasClass('looked') == true) $(this).removeClass('looked');
+				else if($(this).hasClass('important-looked') == true) $(this).removeClass('important-looked');
+				
 				$(this).addClass('click');
 			});
 			
+			// 모달창 닫기 버튼 - 마우스 이벤트에 따라 아이콘 바뀌게
 			$('.close-modal').mouseenter(function() {
 				$('.close-modal i').attr('class', 'fas fa-times-circle');
 			}).mouseleave(function() {
 				$('.close-modal i').attr('class', 'far fa-times-circle');
 			});
 			
+			
 			var clickModal = 99999;
+			var clickTag = '';
 			$(document).on('mouseenter', '.headTr', function(){
 				if($(this).parents().children('tr:eq(' + ($(this).index() + 1) + ')').hasClass('hidden') == true) {
 					$(this).css('cursor', 'pointer');
@@ -574,15 +688,29 @@
 					if(clickModal != $(this).index()) {
 						//clickModal이 초기값이 아닐 때 클릭했던 tr의 bgcolor를 돌려놓고 내용을 숨김
 						if(clickModal != 99999) {
-							$(this).parent().children('tr:eq(' + clickModal + ')').removeClass('hover-color-black');
+							var $lastClick = $(this).parent().children('tr:eq(' + clickModal + ')');
+							var head = $lastClick.html();
+							$lastClick.html(head.slice(0, head.length-5) + clickTag + head.slice(head.length-5, head.length));
+							clickTag = '';
+							
+							$lastClick.removeClass('hover-color-black');
 							modalEvent('close', $(this));
 						}
 						//클릭한 tr의 내용을 보여줌
+						var head = $(this).html();
+						clickTag = head.slice(head.indexOf('<div'), head.length-5);
+						$(this).html(head.replace(clickTag, ''));
+						
 						clickModal = $(this).index();
 						modalEvent('open', $(this));
+						
 					//클릭했던 tr일 때
 					} else {
 						//tr의 bgcolor를 돌려놓고 내용을 숨김
+						var head = $(this).html();
+						$(this).html(head.slice(0, head.length-5) + clickTag + head.slice(head.length-5, head.length));
+						clickTag = '';
+						
 						$(this).removeClass('hover-color-black');
 						modalEvent('close', $(this));
 						clickModal = 99999;
@@ -606,7 +734,6 @@
 					}
 				}
 				
-				//console.log($('.modal-content').innerHeight() + ' / ' + window.outerHeight*0.65);
 				if(type == 'open') {
 					if($('.modal-content').innerHeight() >= window.outerHeight*0.7)
 						$('.modal-content').css('height', '70vh');
@@ -628,21 +755,37 @@
 			});
 			 */
 			
+			/* 도움말 */
+			var trg = 0;
 			$('#helpBtn').mouseenter(function() {
 				$(this).css('transform', 'scale(1.6)');
 			}).mouseleave(function() {
 				$(this).css('transform', 'scale(1.2)');
 			}).click(function() {
-				$('#helpDiv').addClass('show-modal');
+				/* 대기화면 */
+				if(trg == 0) {
+					$('#loading').hide();
+					trg = 1;
+				}
+
+				$(this).css('transform', 'scale(1.2)');
+				$('#mTitle').html('사이트 구성과 설명');
+				$('#mTable').html('<tr><td style="text-align: center;"><div class="modal-img-block"><div class="modal-img one-block"><img src="resources/img/help.png"/></div></div></td></tr>');
+				
+				$('html,body').addClass('fixed');
+				$('#mTable').css('width', '100%');
+				$('.modal-content').css('height', '70vh');
+				document.querySelector(".modal").classList.toggle("show-modal");
 			});
 			
+			/* 타임라인 */
 		    var lineData = $.ajax({
                 url: './resources/data/gitTimelineInfo.txt',
                 async: false
              }).responseText;
 		    
+		    lineData = lineData.replace(/(\r\n|\n|\r)/gm,"");
 			var lineArr = lineData.split('%');
-			//참고 : https://www.python2.net/questions-12013.htm
 			
 			for(var i in lineArr) {
 				var tableArr = lineArr[i].split('^');
@@ -665,7 +808,7 @@
 			var hoverTr = [99999, 0];
 			//hover된 가지의 색을 담는 배열
 			var hoverColor = [];
-			$('#timeGraph tr td:nth-last-child(1)').mouseenter(function() {
+			$('#timeGraph tr td:nth-last-child(1), td:nth-last-child(2)').mouseenter(function() {
 				//timline table의 내용에 mouseover했을 때
 				if($(this).text() != '' && $(this).text().indexOf('Merge')) {
 					//timeLineEvent($(this), 'enter');
@@ -723,7 +866,6 @@
 					}
 				}
 			});
-			//참고 : https://m.blog.naver.com/PostView.nhn?blogId=interbirds&logNo=220120122658&proxyReferer=https:%2F%2Fwww.google.com%2F
 			
 		});
 
@@ -795,10 +937,30 @@
 			}
 		}
 		
+		/* 타임라인 색 */
+		function pickColor() {
+			var rgb = [];
+			
+			rgb[0] = Math.floor(Math.random()*255);
+			rgb[1] = Math.floor(Math.random()*255);
+			
+			if(rgb[0] + rgb[1] >= 400) rgb[2] = Math.floor(Math.random()*(600 - (rgb[0] + rgb[1]))); //rgb합이 600 이하 (흰색 계열 제외)
+			else if(rgb[0] + rgb[1] >= 250) rgb[2] = Math.floor(Math.random()*255);
+			else rgb[2] = Math.floor(Math.random()*105) + 150; //150~255 (검은색 계열 제외)
+			
+			for(var i in rgb) {
+				rgb[rgb.length-1] = rgb.splice(Math.floor(Math.random()*i),1)[0];
+			}
+			
+			return 'rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ')';
+		}
+		
+		/* 타임라인 */
 		function settingTimeLine() {
 			var mainBranchColor;
-			var colorArr = ['rgb(255,0,0)', 'rgb(255,94,0)', 'rgb(255,187,0)', 'rgb(255,228,0)', 'rgb(171,242,0)',
-				'rgb(0,216,255)', 'rgb(0,84,255)', 'rgb(1,0,255)', 'rgb(95,0,255)', 'rgb(255,0,221)'];
+			var colorArr = ['#ff1a46', '#ff55b2', '#ffe600', '#9eff03',
+				'#4399ff', '#3bffde', '#a373ff', '#ff8b2c'];
+			
 			for(var i in colorArr) {
 				colorArr[colorArr.length-1] = colorArr.splice(Math.floor(Math.random()*i),1)[0];
 			}
@@ -808,14 +970,16 @@
 				var hereInfo = $('#timeGraph tr:eq(' + k + ') td:eq(6)').text();
 				
 				if(here.text() == '*' && hereInfo != '' && hereInfo.indexOf('Merge') && checkBranch(k)) {
+					
 					var branchMap = searchBranch('branch', k);
 					var color1, color2;
+					
 					if(colorArr.length > 0) color1 = colorArr.pop();
-					else color1 = 'rgb(' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ')';
+					else color1 = pickColor();
 					
 					if(branchMap.size == 5) {
 						if(colorArr.length > 0) color2 = colorArr.pop();
-						else color2 = 'rgb(' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ')';
+						else color2 = pickColor();
 					}
 					
 					for(var i = k; i > k - branchMap.size; i--) {
@@ -834,8 +998,9 @@
 						here.css('color', mainBranchColor);
 						//here.addClass('hover-bold hover-bold');
 					} else {
+						var range = 715;
 						if(colorArr.length > 0) mainBranchColor = colorArr.pop();
-						else mainBranchColor = 'rgb(' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ',' + Math.floor(Math.random()*220 + 30) + ')';
+						else mainBranchColor = pickColor();
 					}
 				}
 			}
